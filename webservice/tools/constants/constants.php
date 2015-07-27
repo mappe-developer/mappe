@@ -11,6 +11,7 @@ class Constants {
 	//general constants
 	private static $allowed_http_methods = array('GET', 'POST', 'PUT', 'DELETE');
 	private static $allowed_return_types = array('xml', 'json');
+	private static $default_http_method = 'GET';
 	
 	private static $http_status_codes = array(  
         	100 => 'Continue', 101 => 'Switching Protocols',  
@@ -35,6 +36,10 @@ class Constants {
 	private static $default_file_type = 'php';
 	private static $allowed_file_types = array('php', 'html', 'htm');
 	private static $variable_list = array('array', 'bool', 'boolean', 'float', 'int', 'null', 'numeric', 'object', 'resource', 'scalar', 'string', 'password');
+	
+	//path location
+	private static $controller_location = '/access/controller';
+	private static $controller_reference = '\\access\\controller';
 	
 	//logging constants
 	private static $default_logging_level = 'info';

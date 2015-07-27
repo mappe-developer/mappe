@@ -7,15 +7,18 @@ echo 'Current Test Script: ' . $script . '<br/>';
 include_once($script);
 
 
-echo '<h3>Enforcement - Ensure the required information is provided, throws error if unmatched</h3>';
+/*echo '<h3>Enforcement - Ensure the required information is provided, throws error if unmatched (kills all subsequent scripts)</h3>';*/
 /* Takes in an array of arrays containing the variable inputs and their requirements. Error will be thrown if requirements are not met. 
  * It takes in a variable list of variables, but requiring every variable to be an array of requirements.
  * The last parameter it takes is maybe a boolean ($simple) or omitted, if present, it will alter the returned results.
  * The list of array validation requirement format is as follow - [variable, type, min, max, nullable*]
  * However, the min, max can be replaced by an array list in either with the other as null, it will be able to validate if it exist in the list passed in.
 */
+
+
 echo '<hr/>Signature: function enforce_inputs() <br/>';
 echo 'enforce_inputs(): ' . (enforce_inputs()) . '<br/>';
+
 
 //echo 'enforce_inputs(array($data, "string:array", null, null, false)) ' . (enforce_inputs(array($data, 'string:array', null, null, false))) . ' - empty variable <br/><br/>';
 $data = 123; echo '$data = 123 <br/><br/>'; 
@@ -33,7 +36,14 @@ echo ' enforce_inputs(array($data, "numeric", 5, 3, false)) - min more than max 
 echo ' enforce_inputs(array($data, "numeric", null, null, 10)) - nullable must be boolean <br/><br/>';
 echo ' enforce_inputs(array($data, "string", null, null, 10)) - Variable not a string <br/><br/>';
 
+echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'json'); - takes in the return type <br/><br/>";
+echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'xml'); - takes in the return type <br/><br/>";
+echo " enforce_inputs(array($data, 'xxxx', null, null, false)); - return type not given as last variable, default json <br/><br/>";
+echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'xxxx'); - return type not given as last variable, default json <br/><br/>";
+echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'xxxx'); - invalid return type default json used <br/><br/>";
 
-enforce_inputs(array($data, 'xxxx', null, null, false));
+$data = '123';
+enforce_inputs(array($data, 'xxxx', null, null, false), 'json');
+
 
 ?>  

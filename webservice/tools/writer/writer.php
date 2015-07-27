@@ -48,12 +48,11 @@ class Writer {
 		
 		$http_status_codes = Constants::get('http_status_codes');
 		if(isset($http_status_codes[$http_status_code])) { //validates if the $http_status_code provided is in the list
-			if(compare_string($parent_tag, Constants::get('error_tag'))) { //checks if the write request is for an error or a result printout
-				
-				//$data = array('http_status_code'=>$http_status_code, 'http_status_message'=>$http_status_codes[$http_status_code], 'message'=>$message);
-				//if($details != '' && Config::get('enable_debugging') == true) { $data['details'] = $details; }
-							
-			} else { if(!is_array($data)) { Writer::write(400, 'Data provided must be an array.', Constants::get('error_tag'), $return_type); return; } }
+			//check if data type is an array
+			if(!is_array($data)) { 
+				$error = Tool::prepare('Data provided must be an array.', '', __LINE__, $return_type, Constants::get('default_error_code'));
+				Tool::error($function, $error, false);
+			} 
 			
 			//formats the data return with the appropriate http status code.
 			header('HTTP/1.0 ' . $http_status_code . ' ' . $http_status_codes[$http_status_code], true, $http_status_code);

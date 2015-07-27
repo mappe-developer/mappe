@@ -27,6 +27,6 @@ echo '$error("message"=>"message","details"=>"details", "error_code"=>404) <br/>
 echo 'Tool::error($info, $error, false): '; 
 
 $info = array('class_name'=>__NAMESPACE__, 'method_name'=>__METHOD__, 'return_type'=>'json'); $error = array('message'=>'message', 'details'=>'details', 'error_code'=>404);
-Tool::error($info, $error, false); 
+Tool::error($info, $error, false);
 
 ?>  

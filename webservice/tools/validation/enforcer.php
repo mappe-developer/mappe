@@ -26,10 +26,18 @@ use tools\writer\Writer as Writer;
 function enforce_inputs() {
 	
 	$function = array('class_name'=>__NAMESPACE__, 'method_name'=>__METHOD__);
+
+	$message = ''; $variable = ''; $line = '';
 	
-	$results = array('results'=>'true'); $message = ''; $variable = ''; $line = '';
-	$array = func_get_args(); 
+	//retrieve last item as return type if available
+	$array = func_get_args(); $return_type = end($array);
+	if(is_string($return_type) == false) {  $return_type = Constants::get('default_return_type'); }
+	else { 
+		$allowed_return_types = Constants::get('allowed_return_types');
+		if(array_contains($return_type, $allowed_return_types) == false) { $return_type = Constants::get('default_return_type'); }
+	}
 	
+	//loop through every item to validate, sets a message to throw the error at the end of the method
 	foreach($array as $list) {
 		if(is_ready($list)) { //every list must be ready
 			if(is_array($list)) { //ensure that item is an array
@@ -78,9 +86,10 @@ function enforce_inputs() {
 		if(isset($variable_name) == true && $variable_name != '') { $variable_name = '$' . $variable_name; } else { $variable_name = ($type != 'password') ? $variable : '*password*'; }
 		if($variable_name != '') { $variable_name = ' [' . $variable_name . ']'; } 
 		
-		$error = Tool::prepare($message . $variable_name, '', $line, Constants::get('default_error_code'));
-		Tool::error($function, $error);
+		$error = Tool::prepare(($message . $variable_name), '', $line, $return_type, Constants::get('default_error_code'));
+		Tool::error($function, $error, false);
 	}
+	
 }
 
 //ensure that the request is sent with https, else error will be thrown

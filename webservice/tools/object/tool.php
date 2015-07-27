@@ -16,8 +16,9 @@ use tools\writer\Writer as Writer;
  */
 class Tool {
 	
-	public static function prepare($message, $details, $line, $http_status_code = 400) {
-		return array('http_status_code'=>$http_status_code, 'message'=>$message, 'details'=>$details, 'line'=>$line,);
+	public static function prepare($message, $details, $line, $return_type, $http_status_code = 400) {
+		$return_type = set_default($return_type, Constants::get('default_return_type'));
+		return array('http_status_code'=>$http_status_code, 'message'=>$message, 'details'=>$details, 'line'=>$line, 'return_type'=>$return_type);
 	}
 	
 	/*prepares and prints the error, writes to log if indicated */
@@ -26,7 +27,7 @@ class Tool {
 		//preset $info('class_name', 'method_name', 'return_type')
 		$class_name = set_default($info['class_name'], '');
 		$method_name = set_default($info['method_name'], '');
-		$return_type = set_default($info['return_type'], Constants::get('default_return_type'));
+		$return_type = set_default($error['return_type'], Constants::get('default_return_type'));
 		
 		//preset $error('message', 'details', 'line', 'error_code')
 		$message = set_default($error['message'], 'Unknown Error Occurred.'); $details = set_default($error['details'], '');
@@ -36,7 +37,7 @@ class Tool {
 		Writer::write($http_status_code, $error, Constants::get('error_tag'), $return_type);
 		
 		$debuggable = Config::get('enable_debugging');
-		if($debuggable == true) { 
+		if($debuggable == true) {
 		
 		}
 		
