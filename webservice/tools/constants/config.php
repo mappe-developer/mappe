@@ -15,7 +15,7 @@ class Config {
 	//private static $enforce_authentication_https = true;
 	
 	//debugging configurations - shows complex message in errors, raise exceptions in database
-	private static $enable_debugging = true;
+	private static $enable_debugging = false;
 	
 	//logging configurations
 	//private static $enable_logging = true; //enables logs to be written to the specific file provided. (true*/false)

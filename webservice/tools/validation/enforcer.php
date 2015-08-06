@@ -74,7 +74,8 @@ function enforce_inputs() {
 									} 
 								}
 						}
-					} else { $message = 'Variable is not set, unable to validate variable'; $line = __LINE__; }
+							
+					} else if ($nullable == false) { $message = 'Variable is not set, unable to validate variable'; $line = __LINE__; }
 			
 				} else { $message = 'Incomplete variable validation list. [variable, type, min, max, nullable*]'; $line = __LINE__; }
 			} 

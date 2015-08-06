@@ -49,7 +49,7 @@ class Router {
 		if(is_ready($controller) == false) { return; }
 		
 		//form the string to parse location
-		$current_location = implode("/", $this->route->get_current_location());
+		$current_location = implode('/', $this->route->get_current_location());
 		
 		$function = array('class_name'=>__NAMESPACE__, 'method_name'=>__METHOD__);
 		//prepare location for directory and file from current location

@@ -9,6 +9,8 @@ namespace tools\constants;
 class Limits {
 	
 	//shared limits
+	private static $zero_minimium = 0;
+	private static $id_limit = array('min' => 1, 'max' => 2147483647);
 	private static $shorttext_limit = array('min' => 1, 'max' => 50);
 	private static $text_limit = array('min' => 1, 'max' => 255);
 	private static $password_limit = array('min' => 7, 'max' => 30);

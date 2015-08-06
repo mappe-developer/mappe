@@ -42,6 +42,8 @@ echo " enforce_inputs(array($data, 'xxxx', null, null, false)); - return type no
 echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'xxxx'); - return type not given as last variable, default json <br/><br/>";
 echo " enforce_inputs(array($data, 'xxxx', null, null, false), 'xxxx'); - invalid return type default json used <br/><br/>";
 
+echo " enforce_inputs(array($data, 'string', 0, 15, true), 'xxxx'); - if minimum is 0, nullable must be set to true <br/><br/>";
+
 $data = '123';
 enforce_inputs(array($data, 'xxxx', null, null, false), 'json');
 

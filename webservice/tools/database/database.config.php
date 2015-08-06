@@ -12,7 +12,7 @@ class Config {
 	private static $host = 'localhost'; 	
 	private static $username = 'root'; 	
 	private static $password = 'twc_password'; 	
-	private static $database = 'project'; 	
+	private static $database = 'mappe'; 	
 	private static $unix_socket = '/tmp/mysql.sock';
 
 	//access method

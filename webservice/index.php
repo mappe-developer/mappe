@@ -48,8 +48,9 @@ if(is_ready($request)) {
 	$allowed_http_methods = Constants::get('allowed_http_methods');
 	if(array_contains($request_method, $allowed_http_methods, false) == false) { $request_method = Constants::get('default_http_method'); }
 
+	$post_params = $_POST;
 	//form route and send through router
-	$route = new Route($request_path, $request_method, $return_type);
+	$route = new Route($request_path, $post_params, $request_method, $return_type);
 	$router = new Router($route);
 	$router->route();
 	

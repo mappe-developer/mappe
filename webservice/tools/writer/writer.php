@@ -8,16 +8,9 @@ require_once('tools/validation/enforcer.php');
 require_once('tools/constants/constants.php');
 require_once('tools/constants/limits.php');
 
-use tools\constants\Tool as Tool;
+use tools\object\Tool as Tool;
 use tools\constants\Constants as Constants;
 use tools\constants\Limits as Limits;
-
-//require_once('tools/constants/config.php');
-//require_once('tools/constants/limits.php');
-//require_once('tools/writer/logger.php');
-//use tools\constants\Config as Config;
-//use tools\constants\Limits as Limits;
-//use tools\writer\Logger as Logger;
 
 /** tools/writer/writer.php 
  * prints the requested data into either json or xml format based on the request
